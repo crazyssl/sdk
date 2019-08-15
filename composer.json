@@ -1,0 +1,35 @@
+{
+    "name": "crazyssl/sdk",
+    "description": "The sdk for CrazySSL",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "xiaohui.lam",
+            "email": "xiaohui.lam@aliyun.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6",
+        "guzzlehttp/guzzle": ">=5.0"
+    },
+    "require-dev": {
+        "laravel/framework": ">=5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crazyssl\\": "src/"
+        }
+    },
+    "suggest": {
+        "laravel/framework": "在 Laravel 5.5+ 下使用, 效果更佳"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Crazyssl\\LaravelServiceProvider"
+            ]
+        }
+    }
+}
