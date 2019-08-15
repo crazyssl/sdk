@@ -2,6 +2,7 @@
 
 namespace Crazyssl;
 
+use Crazyssl\Exceptions\RequestException;
 use Crazyssl\Resources\Order;
 use Crazyssl\Resources\Product;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -82,6 +83,9 @@ class Client
 
         $json = json_decode($response->getBody());
 
+        if (!isset($json->status) || $json->status != 'success') {
+            throw new RequestException(isset($json->message) ? $json->message : '请求接口出错', isset($json->error_code) ? $json->error_code : -1);
+        }
         return $json;
     }
 }

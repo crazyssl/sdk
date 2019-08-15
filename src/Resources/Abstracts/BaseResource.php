@@ -31,4 +31,21 @@ abstract class BaseResource
     {
         return $this->client->__call($api, $parameters);
     }
+
+    /**
+     * 过滤未填参数
+     *
+     * @param array $compacted
+     * @return array
+     */
+    protected function vars($compacted)
+    {
+        foreach ($compacted as $key => $value)
+        {
+            if ($value === null) {
+                unset($compacted[$key]);
+            }
+        }
+        return $compacted;
+    }
 }
