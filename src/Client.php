@@ -14,7 +14,7 @@ use function GuzzleHttp\json_decode;
  */
 class Client
 {
-    const CRAZYSSL_ORIGIN = 'https://api.crazyssl.com/ssl/v2';
+    const CRAZYSSL_ORIGIN = 'https://api.crazyssl.com/ssl/v3';
     const TRUSTOCEAN_ORIGIN = 'https://api.trustocean.com/ssl/v3';
 
     /**
