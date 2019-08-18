@@ -2,6 +2,8 @@
 
 namespace Crazyssl;
 
+use Crazyssl\Exceptions\DoNotHavePartnerprivilegeException;
+use Crazyssl\Exceptions\InsufficientBalanceException;
 use Crazyssl\Exceptions\RequestException;
 use Crazyssl\Resources\Order;
 use Crazyssl\Resources\Product;
@@ -16,6 +18,11 @@ class Client
 {
     const CRAZYSSL_ORIGIN = 'https://api.crazyssl.com/ssl/v3';
     const TRUSTOCEAN_ORIGIN = 'https://api.trustocean.com/ssl/v3';
+
+    const CODE_EXCEPTION_MAP = [
+        770039 => InsufficientBalanceException::class,
+        778803 => DoNotHavePartnerprivilegeException::class,
+    ];
 
     /**
      * @var \Crazyssl\Resources\Product
@@ -84,7 +91,12 @@ class Client
         $json = json_decode($response->getBody());
 
         if (!isset($json->status) || $json->status != 'success') {
-            throw new RequestException(isset($json->message) ? $json->message : '请求接口出错', isset($json->error_code) ? $json->error_code : -1);
+            $exception_class = RequestException::class;
+            $map = self::CODE_EXCEPTION_MAP;
+            if (isset($map[$json->error_code])) {
+                $exception_class = $map[$json->error_code];
+            }
+            throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->error_code) ? $json->error_code : -1);
         }
         return $json;
     }
