@@ -93,6 +93,9 @@ class Client
         if (!isset($json->status) || $json->status != 'success') {
             $exception_class = RequestException::class;
             $map = self::CODE_EXCEPTION_MAP;
+            if (!isset($json->error_code)) {
+                throw new RequestException('未知错误', -1);
+            }
             if (isset($map[$json->error_code])) {
                 $exception_class = $map[$json->error_code];
             }
