@@ -14,7 +14,7 @@ class LaravelServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'trustocean');
 
         app()->singleton('trustocean', function () {
-            return new Client(config('trustocean.username'), config('trustocean.password'), config('trustocean.origin'));
+            return new Client(config('trustocean.username'), config('trustocean.password'), config('trustocean.origin'), config('trustocean.privateKey'));
         });
     }
 }
