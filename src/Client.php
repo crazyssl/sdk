@@ -155,20 +155,20 @@ class Client
         $type = $input['type'];
         switch ($type) {
             case 'cert_issued':
+                $trustocean_id = $input['trustocean_id'];
+                $ca = $input['ca_code'];
+                $crt = $input['cert_code'];
+                $domains = $input['domains'];
+                $status = $input['status'];
 
-            $trustocean_id = $input['trustocean_id'];
-            $ca = $input['ca_code'];
-            $crt = $input['cert_code'];
-            $domains = $input['domains'];
+                $info = openssl_x509_parse($crt);
 
-            $info = openssl_x509_parse($crt);
+                $not_before = date('Y-m-d H:i:s', data_get($info, 'validFrom_time_t', -1));
+                $not_after = date('Y-m-d H:i:s', data_get($info, 'validTo_time_t', -1));
 
-            $not_before = date('Y-m-d H:i:s', data_get($info, 'validFrom_time_t', -1));
-            $not_after = date('Y-m-d H:i:s', data_get($info, 'validTo_time_t', -1));
+                return $callback($type, $status, $trustocean_id, $domains, $crt, $ca, $not_before, $not_after, $input);
 
-            return $callback($type, $trustocean_id, $domains, $crt, $ca, $not_before, $not_after, $input);
-
-            break;
+                break;
         }
     }
 }
