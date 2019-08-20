@@ -2,7 +2,6 @@
 
 namespace Crazyssl;
 
-use Crazyssl\Callback\Parser;
 use Crazyssl\Exceptions\DoNotHavePartnerprivilegeException;
 use Crazyssl\Exceptions\InsufficientBalanceException;
 use Crazyssl\Exceptions\RequestException;
@@ -64,7 +63,7 @@ class Client
     /**
      * 构造
      *
-     * @param string $username Crazyssl的API用户名 
+     * @param string $username Crazyssl的API用户名
      * @param string $password Crazyssl的API密码
      * @param string|null $apiOrigin Crazyssl的API地址
      * @param string|null $privateKey 私钥用于解密PUSH的
