@@ -133,7 +133,7 @@ class Client
 
         if (isset($input['encrypted_data'])) {
             if (!$this->privateKey) {
-                throw \Exception(-2, '没有配置私钥');
+                throw \Exception('没有配置私钥', -2);
             }
 
             $privateKey = openssl_pkey_get_private($this->privateKey);
@@ -148,9 +148,14 @@ class Client
             $input = json_decode($decrypt, true);
         }
 
+        if (!isset($input['type'])) {
+            throw new \Exception('返回数据没有type ' . json_encode($input), -3);
+        }
+
         $type = $input['type'];
         switch ($type) {
             case 'cert_issued':
+
             $trustocean_id = $input['trustocean_id'];
             $ca = $input['ca_code'];
             $crt = $input['cert_code'];
