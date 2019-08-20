@@ -126,7 +126,7 @@ class Client
     public function parse($callback)
     {
         if (function_exists('request')) {
-            $input = request();
+            $input = request()->all();
         } else {
             $input = $_POST;
         }
