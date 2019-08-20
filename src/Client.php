@@ -151,6 +151,7 @@ class Client
         $type = $input['type'];
         switch ($type) {
             case 'cert_issued':
+            $trustocean_id = $input['trustocean_id'];
             $ca = $input['ca_code'];
             $crt = $input['cert_code'];
             $domains = $input['domains'];
@@ -160,7 +161,7 @@ class Client
             $not_before = date('Y-m-d H:i:s', data_get($info, 'validFrom_time_t', -1));
             $not_after = date('Y-m-d H:i:s', data_get($info, 'validTo_time_t', -1));
 
-            return $callback($type, $domains, $crt, $ca, $not_before, $not_after, $input);
+            return $callback($type, $trustocean_id, $domains, $crt, $ca, $not_before, $not_after, $input);
 
             break;
         }
