@@ -92,7 +92,9 @@ class Client
      */
     public function __call($api, $parameters)
     {
-        $http = new GuzzleHttpClient();
+        $http = new GuzzleHttpClient(isset($_SERVER['IS_PHPUNIT']) && $_SERVER['IS_PHPUNIT'] ? [
+            'handler' => app('guzzle_handler'),
+        ] : []);
 
         $parameters = array_merge(['username' => $this->username, 'password' => $this->password], (array) $parameters);
 

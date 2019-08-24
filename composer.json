@@ -15,15 +15,24 @@
         "guzzlehttp/guzzle": ">=5.0"
     },
     "require-dev": {
-        "laravel/framework": ">=5.0"
+        "laravel/framework": ">=5.0",
+        "laravel/laravel": ">=5.0",
+        "squizlabs/php_codesniffer": "3.*",
+        "phpunit/phpunit": "<8.0",
+        "xiaohuilam/laravel-test": ">=v0.0.1"
     },
     "autoload": {
         "psr-4": {
             "Crazyssl\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Crazyssl\\Tests\\": "tests/"
+        }
+    },
     "suggest": {
-        "laravel/framework": "在 Laravel 5.5+ 下使用, 效果更佳"
+        "laravel/framework": "在 Laravel 5.5+ 框架上使用, 效果更佳"
     },
     "extra": {
         "laravel": {
