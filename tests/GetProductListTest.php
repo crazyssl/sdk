@@ -8,13 +8,12 @@ use Illuminate\Support\Str;
 
 class GetProductListTest extends AbstractTest
 {
-    protected $guard = 'wechat';
     /**
-     * 测试登陆
+     * 测试列出产品
      *
      * @return void
      */
-    public function testLogin()
+    public function testProductList()
     {
         $products = [];
         $ct = mt_rand(5, 20);
