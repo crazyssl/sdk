@@ -40,8 +40,7 @@ abstract class BaseResource
      */
     protected function filter($compacted)
     {
-        foreach ($compacted as $key => $value)
-        {
+        foreach ($compacted as $key => $value) {
             if ($value === null) {
                 unset($compacted[$key]);
             }

@@ -29,4 +29,5 @@ namespace Crazyssl\Response\Interfaces;
  * @property-read Product $73
  */
 interface ProductList
-{ }
+{
+}

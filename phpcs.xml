@@ -91,11 +91,7 @@
         <severity>0</severity>
     </rule>
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
-    <file>app</file>
-    <file>config</file>
-    <file>public</file>
-    <file>resources</file>
-    <file>routes</file>
+    <file>src</file>
     <file>tests</file>
     <exclude-pattern>*/app/Admin/*</exclude-pattern>
     <exclude-pattern>*/.vscode/*</exclude-pattern>

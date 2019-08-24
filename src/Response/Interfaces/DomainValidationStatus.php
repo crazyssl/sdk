@@ -11,4 +11,5 @@ namespace Crazyssl\Response\Interfaces;
  * @property-read string $emails
  */
 interface DomainValidationStatus
-{ }
+{
+}

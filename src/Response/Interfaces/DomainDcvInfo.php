@@ -17,4 +17,5 @@ namespace Crazyssl\Response\Interfaces;
  * @property-read string $https_filecontent
  */
 interface DomainDcvInfo
-{ }
+{
+}

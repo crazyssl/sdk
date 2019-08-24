@@ -13,4 +13,5 @@ namespace Crazyssl\Response\Interfaces;
  * @property-read string $brand
  */
 interface Product
-{ }
+{
+}
