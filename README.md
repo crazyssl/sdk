@@ -1,6 +1,13 @@
 # CrazySSL PHP SDK
 CrazySSL 和 Trustocean 的 PHP SDK
 
+## 版本适配
+- ![php5.6+.svg](https://img.shields.io/badge/PHP-5.6+-4c1.svg)
+- ![laravel5.0+.svg](https://img.shields.io/badge/Laravel-5.0+-4c1.svg)
+
+## 单元测试
+- ![](https://api.travis-ci.org/crazyssl/sdk.svg?branch=master)
+
 ## 优势
 
 - composer 安装
