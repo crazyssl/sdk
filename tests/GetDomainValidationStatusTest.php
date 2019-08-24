@@ -21,8 +21,8 @@ class GetDomainValidationStatusTest extends AbstractTest
             $mock = new MockHandler([
                 new Response(200, [], json_encode([
                     'status' => 'success',
-                    'dcvinfo' => [
-                        [
+                    'dcvinfo' => collect(['http', 'https', 'dns', 'email',])->map(function ($method) use ($domain) {
+                        return [
                             "domain" => $domain,
                             "emails" => [
                                 "admin@" . $domain,
@@ -31,50 +31,11 @@ class GetDomainValidationStatusTest extends AbstractTest
                                 "postmaster@" . $domain,
                                 "webmaster@" . $domain,
                             ],
-                            "method" => "http",
+                            "method" => $method,
                             "status" => "Processing",
                             "domainmd5hash" => md5($domain),
-                        ],
-                        [
-                            "domain" => $domain,
-                            "emails" => [
-                                "admin@" . $domain,
-                                "administrator@" . $domain,
-                                "hostmaster@" . $domain,
-                                "postmaster@" . $domain,
-                                "webmaster@" . $domain,
-                            ],
-                            "method" => "https",
-                            "status" => "Processing",
-                            "domainmd5hash" => md5($domain),
-                        ],
-                        [
-                            "domain" => $domain,
-                            "emails" => [
-                                "admin@" . $domain,
-                                "administrator@" . $domain,
-                                "hostmaster@" . $domain,
-                                "postmaster@" . $domain,
-                                "webmaster@" . $domain,
-                            ],
-                            "method" => "dns",
-                            "status" => "Processing",
-                            "domainmd5hash" => md5($domain),
-                        ],
-                        [
-                            "domain" => $domain,
-                            "emails" => [
-                                "admin@" . $domain,
-                                "administrator@" . $domain,
-                                "hostmaster@" . $domain,
-                                "postmaster@" . $domain,
-                                "webmaster@" . $domain,
-                            ],
-                            "method" => "email",
-                            "status" => "Processing",
-                            "domainmd5hash" => md5($domain),
-                        ],
-                    ],
+                        ];
+                    }),
                 ])),
             ]);
             return $mock;
