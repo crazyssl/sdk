@@ -38,7 +38,7 @@ abstract class BaseResource
      * @param array $compacted
      * @return array
      */
-    protected function vars($compacted)
+    protected function filter($compacted)
     {
         foreach ($compacted as $key => $value)
         {

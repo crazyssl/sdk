@@ -36,7 +36,7 @@ class Order extends BaseResource
      */
     public function addSSLOrder($pid, $period, $csr_code, $contact_email, $dcv_method, $unique_id, $domains = null, $renew = null, $organization_name = null, $organizationalUnitName = null, $registered_address_line1 = null, $registered_no = null, $country = null, $state = null, $city = null, $postal_code = null, $organization_phone = null, $date_of_incorporation = null, $contact_name = null, $contact_title = null, $contact_phone = null)
     {
-        $parameters = $this->vars(compact(['pid', 'period', 'csr_code', 'contact_email', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
+        $parameters = $this->filter(compact(['pid', 'period', 'csr_code', 'contact_email', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -51,7 +51,7 @@ class Order extends BaseResource
      */
     public function getOrderStatus($trustocean_id)
     {
-        $parameters = $this->vars(compact(['trustocean_id',]));
+        $parameters = $this->filter(compact(['trustocean_id',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -66,7 +66,7 @@ class Order extends BaseResource
      */
     public function getSSLDetails($trustocean_id)
     {
-        $parameters = $this->vars(compact(['trustocean_id',]));
+        $parameters = $this->filter(compact(['trustocean_id',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -81,7 +81,7 @@ class Order extends BaseResource
      */
     public function getDomainValidationStatus($trustocean_id)
     {
-        $parameters = $this->vars(compact(['trustocean_id',]));
+        $parameters = $this->filter(compact(['trustocean_id',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -98,7 +98,7 @@ class Order extends BaseResource
      */
     public function changeDCVMethod($trustocean_id, $domain, $method)
     {
-        $parameters = $this->vars(compact(['trustocean_id', 'domain', 'method',]));
+        $parameters = $this->filter(compact(['trustocean_id', 'domain', 'method',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -113,7 +113,7 @@ class Order extends BaseResource
      */
     public function reTryDcvEmailOrDCVCheck($trustocean_id)
     {
-        $parameters = $this->vars(compact(['trustocean_id',]));
+        $parameters = $this->filter(compact(['trustocean_id',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -128,7 +128,7 @@ class Order extends BaseResource
      */
     public function removeSanDomain($trustocean_id, $domain)
     {
-        $parameters = $this->vars(compact(['trustocean_id', 'domain',]));
+        $parameters = $this->filter(compact(['trustocean_id', 'domain',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
@@ -162,7 +162,7 @@ class Order extends BaseResource
      */
     public function reissueSSLOrder($trustocean_id, $csr_code, $dcv_method, $unique_id, $domains = null, $renew = null, $organization_name = null, $organizationalUnitName = null, $registered_address_line1 = null, $registered_no = null, $country = null, $state = null, $city = null, $postal_code = null, $organization_phone = null, $date_of_incorporation = null, $contact_name = null, $contact_title = null, $contact_phone = null)
     {
-        $parameters = $this->vars(compact(['trustocean_id', 'csr_code', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
+        $parameters = $this->filter(compact(['trustocean_id', 'csr_code', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 }
