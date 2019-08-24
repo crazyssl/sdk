@@ -6,7 +6,7 @@ CrazySSL 和 Trustocean 的 PHP SDK
 - ![laravel5.0+.svg](https://img.shields.io/badge/Laravel-5.0+-4c1.svg)
 
 ## 单元测试
-- ![](https://api.travis-ci.org/crazyssl/sdk.svg?branch=master)
+- [![](https://api.travis-ci.org/crazyssl/sdk.svg?branch=master)](https://travis-ci.org/crazyssl/sdk)
 
 ## 优势
 
