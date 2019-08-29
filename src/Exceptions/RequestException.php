@@ -13,7 +13,7 @@ class RequestException extends Exception implements HttpExceptionInterface
      */
     public function getStatusCode()
     {
-        return $this->getCode();
+        return 500;
     }
 
     /**
