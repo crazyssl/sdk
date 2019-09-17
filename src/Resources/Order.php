@@ -14,9 +14,9 @@ class Order extends BaseResource
      * @param string $period
      * @param string $csr_code
      * @param string $contact_email
-     * @param string[] $dcv_method
+     * @param string $dcv_method
      * @param int $unique_id
-     * @param string[] $domains
+     * @param string $domains
      * @param int $renew
      * @param string|null $organization_name
      * @param string|null $organizationalUnitName
@@ -140,9 +140,9 @@ class Order extends BaseResource
      * @param int $trustocean_id
      * @param string $csr_code
      * @param string $contact_email
-     * @param string[] $dcv_method
+     * @param string $dcv_method
      * @param int $unique_id
-     * @param string[] $domains
+     * @param string $domains
      * @param int $renew
      * @param string|null $organization_name
      * @param string|null $organizationalUnitName

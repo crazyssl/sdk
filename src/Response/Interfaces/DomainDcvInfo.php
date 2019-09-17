@@ -15,6 +15,9 @@ namespace Crazyssl\Response\Interfaces;
  * @property-read string $https_verifylink
  * @property-read string $https_filename
  * @property-read string $https_filecontent
+ * @property-read string $dns_type
+ * @property-read string $dns_host
+ * @property-read string $dns_value
  */
 interface DomainDcvInfo
 {
