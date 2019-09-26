@@ -7,6 +7,8 @@ use Crazyssl\Exceptions\InsufficientBalanceException;
 use Crazyssl\Exceptions\RequestException;
 use Crazyssl\Resources\Callback;
 use Crazyssl\Resources\Order;
+use Crazyssl\Mock\ProductMock;
+use Crazyssl\Mock\OrderMock;
 use Crazyssl\Resources\Product;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
@@ -34,6 +36,16 @@ class Client
      * @var \Crazyssl\Resources\Order
      */
     public $order;
+
+    /**
+     * @var \Crazyssl\Mock\ProductMock
+     */
+    public $product_mock;
+
+    /**
+     * @var \Crazyssl\Mock\OrderMock
+     */
+    public $order_mock;
 
     /**
      * @var \Crazyssl\Resources\Callback
@@ -80,6 +92,8 @@ class Client
 
         $this->product = new Product($this);
         $this->order = new Order($this);
+        $this->product_mock = new ProductMock($this);
+        $this->order_mock = new OrderMock($this);
         $this->callback = new Callback($this);
     }
 
@@ -109,6 +123,7 @@ class Client
         if (!isset($json->status) || $json->status != 'success') {
             $exception_class = RequestException::class;
             $map = self::CODE_EXCEPTION_MAP;
+
             if (!isset($json->error_code)) {
                 throw new RequestException('未知错误', -1);
             }
@@ -117,6 +132,7 @@ class Client
             }
             throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->error_code) ? $json->error_code : -1);
         }
+
         return $json;
     }
 

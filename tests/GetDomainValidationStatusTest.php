@@ -2,9 +2,6 @@
 namespace Crazyssl\Tests;
 
 use Crazyssl\Tests\Abstracts\AbstractTest;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Support\Str;
 
 class GetDomainValidationStatusTest extends AbstractTest
 {
@@ -15,36 +12,12 @@ class GetDomainValidationStatusTest extends AbstractTest
      */
     public function testGetDomainValidationStatus()
     {
-        app()->singleton('guzzle_handler', function () {
-            $domain = Str::random(5) . '.com';
-
-            $mock = new MockHandler([
-                new Response(200, [], json_encode([
-                    'status' => 'success',
-                    'dcvinfo' => collect(['http', 'https', 'dns', 'email',])->map(function ($method) use ($domain) {
-                        return [
-                            "domain" => $domain,
-                            "emails" => [
-                                "admin@" . $domain,
-                                "administrator@" . $domain,
-                                "hostmaster@" . $domain,
-                                "postmaster@" . $domain,
-                                "webmaster@" . $domain,
-                            ],
-                            "method" => $method,
-                            "status" => "Processing",
-                            "domainmd5hash" => md5($domain),
-                        ];
-                    }),
-                ])),
-            ]);
-            return $mock;
-        });
-
         /**
          * @var \Crazyssl\Client $sdk
          */
         $sdk = app('trustocean');
+        $sdk->order_mock->getDomainValidationStatus();
+
         $domain_validation = $sdk->order->getDomainValidationStatus('1');
 
         $dns_dcv = collect($domain_validation->dcvinfo)->where('method', 'dns')->first();
