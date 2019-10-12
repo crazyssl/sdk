@@ -165,4 +165,19 @@ class Order extends BaseResource
         $parameters = $this->filter(compact(['trustocean_id', 'csr_code', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
+
+    /**
+     * Cancel and refund
+     *
+     * @link https://support.trustocean.com/display/SPC/cancelAndRefund
+     *
+     * @param int $trustocean_id 必须是由 addSSLOrder 下单返回的订单号 trustocean_id
+     *
+     * @return \Crazyssl\Response\Interfaces\BaseResponse
+     */
+    public function cancelAndRefund($trustocean_id)
+    {
+        $parameters = $this->filter(compact(['trustocean_id',]));
+        return $this->__call(__FUNCTION__, $parameters);
+    }
 }
