@@ -180,4 +180,20 @@ class Order extends BaseResource
         $parameters = $this->filter(compact(['trustocean_id',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
+
+    /**
+     * 吊销
+     *
+     * @link https://support.trustocean.com/display/SPC/revokeSSL
+     *
+     * @param int $trustocean_id 必须是由 addSSLOrder 下单返回的订单号 trustocean_id
+     * @param int $revocationReason 50个字符以内的终端用户吊销原因
+     *
+     * @return \Crazyssl\Response\Interfaces\BaseResponse
+     */
+    public function revokeSSL($trustocean_id, $revocationReason)
+    {
+        $parameters = $this->filter(compact(['trustocean_id', 'revocationReason',]));
+        return $this->__call(__FUNCTION__, $parameters);
+    }
 }
