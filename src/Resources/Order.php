@@ -143,7 +143,6 @@ class Order extends BaseResource
      * @param string $dcv_method
      * @param int $unique_id
      * @param string $domains
-     * @param int $renew
      * @param string|null $organization_name
      * @param string|null $organizationalUnitName
      * @param string|null $registered_address_line1
@@ -160,9 +159,9 @@ class Order extends BaseResource
      *
      * @return \Crazyssl\Response\ReissueSSLOrderResponse
      */
-    public function reissueSSLOrder($trustocean_id, $csr_code, $dcv_method, $unique_id, $domains = null, $renew = null, $organization_name = null, $organizationalUnitName = null, $registered_address_line1 = null, $registered_no = null, $country = null, $state = null, $city = null, $postal_code = null, $organization_phone = null, $date_of_incorporation = null, $contact_name = null, $contact_title = null, $contact_phone = null)
+    public function reissueSSLOrder($trustocean_id, $csr_code, $dcv_method, $unique_id, $domains = null, $organization_name = null, $organizationalUnitName = null, $registered_address_line1 = null, $registered_no = null, $country = null, $state = null, $city = null, $postal_code = null, $organization_phone = null, $date_of_incorporation = null, $contact_name = null, $contact_title = null, $contact_phone = null)
     {
-        $parameters = $this->filter(compact(['trustocean_id', 'csr_code', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
+        $parameters = $this->filter(compact(['trustocean_id', 'csr_code', 'dcv_method', 'unique_id', 'domains', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
