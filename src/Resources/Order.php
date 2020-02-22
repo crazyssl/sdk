@@ -31,12 +31,13 @@ class Order extends BaseResource
      * @param string|null $contact_name
      * @param string|null $contact_title
      * @param string|null $contact_phone
+     * @param string|null $callback
      *
      * @return \Crazyssl\Response\AddSSLOrderResponse
      */
-    public function addSSLOrder($pid, $period, $csr_code, $contact_email, $dcv_method, $unique_id, $domains = null, $renew = null, $organization_name = null, $organizationalUnitName = null, $registered_address_line1 = null, $registered_no = null, $country = null, $state = null, $city = null, $postal_code = null, $organization_phone = null, $date_of_incorporation = null, $contact_name = null, $contact_title = null, $contact_phone = null)
+    public function addSSLOrder($pid, $period, $csr_code, $contact_email, $dcv_method, $unique_id, $domains = null, $renew = null, $organization_name = null, $organizationalUnitName = null, $registered_address_line1 = null, $registered_no = null, $country = null, $state = null, $city = null, $postal_code = null, $organization_phone = null, $date_of_incorporation = null, $contact_name = null, $contact_title = null, $contact_phone = null, $callback = null)
     {
-        $parameters = $this->filter(compact(['pid', 'period', 'csr_code', 'contact_email', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone',]));
+        $parameters = $this->filter(compact(['pid', 'period', 'csr_code', 'contact_email', 'dcv_method', 'unique_id', 'domains', 'renew', 'organization_name', 'organizationalUnitName', 'registered_address_line1', 'registered_no', 'country', 'state', 'city', 'postal_code', 'organization_phone', 'date_of_incorporation', 'contact_name', 'contact_title', 'contact_phone', 'callback']));
         return $this->__call(__FUNCTION__, $parameters);
     }
 
