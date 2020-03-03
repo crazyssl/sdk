@@ -5,12 +5,14 @@ namespace Crazyssl;
 use Crazyssl\Exceptions\DoNotHavePartnerprivilegeException;
 use Crazyssl\Exceptions\InsufficientBalanceException;
 use Crazyssl\Exceptions\RequestException;
+use Crazyssl\Mock\OrderMock;
+use Crazyssl\Mock\ProductMock;
 use Crazyssl\Resources\Callback;
 use Crazyssl\Resources\Order;
-use Crazyssl\Mock\ProductMock;
-use Crazyssl\Mock\OrderMock;
 use Crazyssl\Resources\Product;
+use Exception;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\RequestOptions;
 
 use function GuzzleHttp\json_decode;
 
@@ -73,22 +75,40 @@ class Client
     protected $privateKey;
 
     /**
+     * 连接超时
+     *
+     * @var int
+     */
+    protected static $connectionTimeout = 60 * 1000;
+
+    /**
+     * 读取超时
+     *
+     * @var int
+     */
+    protected static $readTimeout = 60 * 1000;
+
+    /**
      * 构造
      *
      * @param string $username Crazyssl的API用户名
      * @param string $password Crazyssl的API密码
      * @param string|null $apiOrigin Crazyssl的API地址
      * @param string|null $privateKey 私钥用于解密PUSH的
+     * @param int $connectionTimeout 连接超时
+     * @param int $readTimeout 读取超时
      */
-    public function __construct($username, $password, $apiOrigin = null, $privateKey = null)
+    public function __construct($username, $password, $apiOrigin = null, $privateKey = null, $connectionTimeout = self::$connectionTimeout, $readTimeout = self::$readTimeout)
     {
         if ($apiOrigin === null) {
-            $apiOrigin = self::CRAZYSSL_ORIGIN;
+            $apiOrigin = static::CRAZYSSL_ORIGIN;
         }
         $this->username = $username;
         $this->password = $password;
         $this->apiOrigin = $apiOrigin;
         $this->privateKey = $privateKey;
+        static::$connectionTimeout = $connectionTimeout;
+        static::$readTimeout = $readTimeout;
 
         $this->product = new Product($this);
         $this->order = new Order($this);
@@ -115,7 +135,9 @@ class Client
         $uri = $this->apiOrigin . '/' . $api;
 
         $response = $http->post($uri, [
-            'form_params' => $parameters,
+            RequestOptions::FORM_PARAMS => $parameters,
+            RequestOptions::CONNECT_TIMEOUT => static::$connectionTimeout,
+            RequestOptions::READ_TIMEOUT => static::$readTimeout,
         ]);
 
         $json = json_decode($response->getBody());
@@ -151,7 +173,7 @@ class Client
 
         if (isset($input['encrypted_data'])) {
             if (!$this->privateKey) {
-                throw \Exception('没有配置私钥', -2);
+                throw Exception('没有配置私钥', -2);
             }
 
             $privateKey = openssl_pkey_get_private($this->privateKey);
