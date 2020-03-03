@@ -95,10 +95,10 @@ class Client
      * @param string $password Crazyssl的API密码
      * @param string|null $apiOrigin Crazyssl的API地址
      * @param string|null $privateKey 私钥用于解密PUSH的
-     * @param int $connectionTimeout 连接超时
-     * @param int $readTimeout 读取超时
+     * @param int|null $connectionTimeout 连接超时
+     * @param int|null $readTimeout 读取超时
      */
-    public function __construct($username, $password, $apiOrigin = null, $privateKey = null, $connectionTimeout = self::$connectionTimeout, $readTimeout = self::$readTimeout)
+    public function __construct($username, $password, $apiOrigin = null, $privateKey = null, $connectionTimeout = null, $readTimeout = null)
     {
         if ($apiOrigin === null) {
             $apiOrigin = static::CRAZYSSL_ORIGIN;
@@ -107,8 +107,12 @@ class Client
         $this->password = $password;
         $this->apiOrigin = $apiOrigin;
         $this->privateKey = $privateKey;
-        static::$connectionTimeout = $connectionTimeout;
-        static::$readTimeout = $readTimeout;
+        if ($connectionTimeout !== null) {
+            static::$connectionTimeout = $connectionTimeout;
+        }
+        if ($readTimeout !== null) {
+            static::$readTimeout = $readTimeout;
+        }
 
         $this->product = new Product($this);
         $this->order = new Order($this);
